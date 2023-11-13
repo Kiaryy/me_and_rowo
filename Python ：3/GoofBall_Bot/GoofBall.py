@@ -38,7 +38,7 @@ async def on_ready():
 # Command: !hello
 @bot.command(name='shrimple')
 async def hello(ctx):
-    await ctx.send(file=discord.File(f'shrimple_gifs/{shrimple[1][randint(0,shrimple[0])]}'))
+    await ctx.send(file=discord.File(f'shrimple_gifs/{shrimple[1][randint(0,shrimple[0]-1)]}'))
 
 # Run the bot
 bot.run(secret)
