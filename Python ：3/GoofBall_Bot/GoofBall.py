@@ -9,39 +9,24 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-def count_files_in_folder(folder_path): # Gets the number of files in a folder
+def files_in_folder(folder_path): # Gives the number of files in a folder, and a list with all the files
     try:
         # List all files in the directory
         files = os.listdir(folder_path)
-
+        
         # Use a list comprehension to filter out non-files
         files = [file for file in files if os.path.isfile(os.path.join(folder_path, file))]
-
+        
         # Get the count of files
         file_count = len(files)
-
-        return file_count
-
+        
+        return (file_count, files)
     except FileNotFoundError:
         print(f"The folder '{folder_path}' was not found.")
         return None
 
-def change_name_files(folder_path):
-        # List all files in the directory
-        files = os.listdir(folder_path)
-        # Use a list comprehension to filter out non-files
-        files = [file for file in files if os.path.isfile(os.path.join(folder_path, file))]
-        
-        i = 0
-        try: 
-            for file in files:
-                if file != f"{i}.gif":
-                    os.rename(f"{folder_path}/{file}", f"{folder_path}/{i}.gif")
-                i +=1
-        except FileExistsError:
-            print(f"All the files in {folder_path} have the correct name")
 
-shrimple_lenght = count_files_in_folder("shrimple_gifs")
+shrimple = files_in_folder("shrimple_gifs")
 
 # Event: Bot is ready
 @bot.event
@@ -49,12 +34,11 @@ async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
     print("Ready to do some tomfoolery")
     print('------')
-    change_name_files("shrimple_gifs")
 
 # Command: !hello
 @bot.command(name='shrimple')
 async def hello(ctx):
-    await ctx.send(file=discord.File(f'shrimple_gifs/{randint(0,shrimple_lenght-1)}.gif'))
+    await ctx.send(file=discord.File(f'shrimple_gifs/{shrimple[1][randint(0,shrimple[0])]}'))
 
 # Run the bot
 bot.run(secret)
