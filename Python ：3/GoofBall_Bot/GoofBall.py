@@ -47,6 +47,7 @@ shrimple_lenght = count_files_in_folder("shrimple_gifs")
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
+    print("Ready to do some tomfoolery")
     print('------')
     change_name_files("shrimple_gifs")
 
