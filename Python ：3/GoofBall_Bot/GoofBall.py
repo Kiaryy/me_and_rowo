@@ -37,12 +37,12 @@ async def on_ready():
 
 # Command: !shrimple
 @bot.command(name='shrimple')
-async def shrimple(ctx):
+async def hello(ctx):
     await ctx.send(file=discord.File(f'shrimple_gifs/{shrimple[1][randint(0,shrimple[0]-1)]}'))
 
 # Command: !cars
 @bot.command(name='cars')
-async def cars(ctx):
+async def hello(ctx):
     await ctx.send(file=discord.File(f'silly_cars/{cars[1][randint(0,cars[0]-1)]}'))
 
 # Command: !hello
