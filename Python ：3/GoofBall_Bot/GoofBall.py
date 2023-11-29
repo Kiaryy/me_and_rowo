@@ -37,13 +37,31 @@ async def on_ready():
 
 # Command: !shrimple
 @bot.command(name='shrimple')
-async def hello(ctx):
+async def shrimple(ctx):
     await ctx.send(file=discord.File(f'shrimple_gifs/{shrimple[1][randint(0,shrimple[0]-1)]}'))
 
 # Command: !cars
 @bot.command(name='cars')
-async def hello(ctx):
+async def cars(ctx):
     await ctx.send(file=discord.File(f'silly_cars/{cars[1][randint(0,cars[0]-1)]}'))
+
+# Command: !hello
+@bot.command(name='hello')
+async def hello(ctx):
+    await ctx.send('Haiiii :3')
+    await ctx.send('https://tenor.com/view/crab-wave-greetings-hi-hello-gif-7698888542717415913')
+
+# Command: !roll_D6
+@bot.command(name='roll_D6')
+async def guess(ctx):
+    number = randint(1, 6)
+    await ctx.send(number)
+
+# Command: !guess_the_number
+@bot.command(name='guess')
+async def guess(ctx):
+    number = randint(1, 10)
+    await ctx.send(number)
 
 # Run the bot
 bot.run(secret)
